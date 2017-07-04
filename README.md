@@ -58,7 +58,7 @@ Simply just clone this repo to get started! View [docs/index.html](https://joebe
 
 ## The Classes
 
-This is a 12x12 grid meaning there are 12 columns and twelve rows.  There are **over 150 generated classes**.  The classes are structured as follows:
+This is a 12x12 grid meaning there are 12 columns and 12 rows.  There are **over 150 generated classes**.  The classes are structured as follows:
 
 ```
 (col or row)-(starting block)-(ending block)
@@ -77,8 +77,8 @@ Examples:
 .col-1-12 (This section will start at column 1 and span all 12 columns)
 .col-6-12 (This section will start at column 6 and span 6 additional columns)
 
-.row-4-12 (This section will start at row 4 and span 8 additional columns)
-.row-12-12 (This section will start at row 12 and only span 1 column)
+.row-4-12 (This section will start at row 4 and span 8 additional rows)
+.row-12-12 (This section will start at row 12 and only span 1 row)
 ```
 
 **Note:** Sections cannot span backwards.  For example, the following is not possible:
@@ -88,7 +88,7 @@ Examples:
 .row-2-1
 ```
 
-**Note:** You do not need to specify both .col and .row classes on a section.  If two sequential sections span more than 12 blocks, the second section will automatically break onto the next row however specifying both is recommended.
+**Note:** You do not need to specify both .col and .row classes on a section.  If two sequential sections span more than 12 blocks, the second section will automatically break onto the next row/column however specifying both is recommended.
 
 
 ## Helper Classes
@@ -173,4 +173,3 @@ Example markup:
 ## Credits
 
 Grid system built by Joe Berthelot.
-# the-grid
