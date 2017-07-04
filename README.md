@@ -10,26 +10,86 @@ Simply just clone this repo to get started! View [docs/index.html](https://joebe
 
 ## Usage
 
-The only requirements are that the columns are nested in a `.container` and a `.row`.  The markup is simple and straightforward:
+1. Initialize the grid:
 
 ```html
-<div class="container">
-  <div class="row">
-    <div class="full">This is a full-width column.</div>
-  </div>
+<div class="grid"></div>
+```
+
+2. Add your sections:
+
+```html
+<div class="grid">
+  <div id="header"></div>
+  <div id="article"></div>
+  <div id="sidebar"></div>
+  <div id="footer"></div>
 </div>
 ```
 
+3. Position your sections:
+
+```html
+<div class="grid">
+  <div class="col-1-12 row-1-1"   id="header"></div>
+  <div class="col-1-8  row-2-11"  id="article"></div>
+  <div class="col-9-12 row-2-11"  id="sidebar"></div>
+  <div class="col-1-12 row-12-12" id="footer"></div>
+</div>
+```
+
+**Note:** The order of your sections *do not matter*!  This markup will appear exactly the same:
+
+```html
+<div class="grid">
+  <div class="col-1-8  row-2-11"  id="article"></div>
+  <div class="col-1-12 row-12-12" id="footer"></div>
+  <div class="col-9-12 row-2-11"  id="sidebar"></div>
+  <div class="col-1-12 row-1-1"   id="header"></div>
+</div>
+```
+
+4. Configure your grid settings in `config.less`.  As of now the only configuration options are:
+
+- Set column gap size.
+- Set row gap size.
+- Set grid width.
+
+
 ## The Classes
 
-The following classes are used to set the width of your columns:
+This is a 12x12 grid meaning there are 12 columns and twelve rows.  There are **over 150 generated classes**.  The classes are structured as follows:
 
-1. .full (12/12 Columns)
-2. .one-half (6/12 Columns)
-3. .two-thirds (8/12 Columns)
-4. .one-third (4/12 Columns)
-5. .one-fourth (3/12 Columns)
-6. .one-sixth (2/12 Columns)
+```
+(col or row)-(starting block)-(ending block)
+```
+
+Parameters:
+
+```
+[col]-[1-12]-[1-12]
+[row]-[1-12]-[1-12]
+```
+
+Examples:
+
+```
+.col-1-12 (This section will start at column 1 and span all 12 columns)
+.col-6-12 (This section will start at column 6 and span 6 additional columns)
+
+.row-4-12 (This section will start at row 4 and span 8 additional columns)
+.row-12-12 (This section will start at row 12 and only span 1 column)
+```
+
+**Note:** Sections cannot span backwards.  For example, the following is not possible:
+
+```
+.col-12-6
+.row-2-1
+```
+
+**Note:** You do not need to specify both .col and .row classes on a section.  If two sequential sections span more than 12 blocks, the second section will automatically break onto the next row however specifying both is recommended.
+
 
 ## Helper Classes
 
@@ -42,93 +102,65 @@ Aligning content is easy.  The following classes will align your content vertica
 3. .content-end-v (Vertically align content to bottom)
 4. .content-end-h (Horizontally align content to right)
 
-Just make sure you also add the `.grid` class as well.
-
 Example markup:
 
 ```html
-<div class="container">
-  <div class="row">
-    <div class="full grid content-center-v content-center-h">This is a full-width column and this text is centered.</div>
-  </div>
+<div class="grid">
+  <div class="col-1-12 row-1-1 content-center-h">This text is horizontally centered.</div>
 </div>
 ```
 
-#### Column Alignment
-
-1. .middle (Align a column to the middle of the grid)
-
-Use the `.middle` class to align the column to the middle of the layout.  This only works on classes: `.one-half .two-thirds .one-third .one-sixth`.
-
-#### Fixed Header & Footer
-
-1. .top (Align a row to the top of the layout)
-2. .bottom (Align a row to the bottom of the layout)
-
-If you want to position an element to the top or bottom of your layout, add the `.grid` class to your `.container` and add either `.top` or `.bottom` to your `.row`.
-
-Example markup:
-
-```html
-<div class="container grid">
-  <div class="row top">
-    <div class="full">Header</div>
-  </div>
-  <div class="row">
-    <div class="two-thirds">Content</div>
-    <div class="one-third">Sidebar</div>
-  </div>
-  <div class="row bottom">
-    <div class="full">Footer</div>
-  </div>
-</div>
-```
 
 #### Nested Grids
 
-Nesting grids is also extremely easy.  Just add the `.grid` class to your column and then add your inner-grid `<div>`'s inside!
+Nesting grids is also extremely easy.  Just add the `.grid` class to your section!
 
 Example markup:
 
 ```html
-<div class="container grid">
-  <div class="row">
-    <div class="one-half grid">
-      <div class="one-fourth">One Fourth</div>
-      <div class="one-fourth">One Fourth</div>
-      <div class="one-fourth">One Fourth</div>
-      <div class="one-fourth">One Fourth</div>
-    </div>
-    <div class="one-half">One Half</div>
+<div class="grid">
+  <div class="grid col-1-12 row-1-6">
+    <div class="col-1-12 row-1-1"></div>
+    <div class="col-1-12 row-2-12"></div>
   </div>
 </div>
 ```
 
-#### Responsive Grids
 
-Two breakpoints are provided: 768px for tablets and 576px for mobile.  Apply one of the following helper classes to your `.container` to enable column stacking:
+#### Responsiveness
 
-1. .tablet-stack (Stack columns at <= 768px)
-2. .mobile-stack (Stack columns at <= 576px)
+*Coming soon...*
 
-To set a specific row or column to be hidden when a breakpoint is hit, just add the `.sm-hide` class.
+
+#### Other Helper Classes
+
+1. .fill-height - Sets the min-height of the grid to 100vh.  This is an extremely easy way to get a sticky footer.
 
 Example markup:
 
 ```html
-<div class="container mobile-stack grid">
-  <div class="row">
-    <div class="one-half">One Half</div>
-    <div class="one-half">One Half</div>
-  </div>
-  <div class="row sm-hide">
-    <div class="one-fourth">One Fourth</div>
-    <div class="one-fourth">One Fourth</div>
-    <div class="one-fourth">One Fourth</div>
-    <div class="one-fourth">One Fourth</div>
-  </div>
+<div class="grid fill-height">
+  <div class="col-1-12 row-1-1"   id="header">This header is at the top of the viewport.</div>
+  <div class="col-1-8  row-2-11"  id="article">I span the remaining height of the leftover space.</div>
+  <div class="col-9-12 row-2-11"  id="sidebar">I span the remaining height of the leftover space.</div>
+  <div class="col-1-12 row-12-12" id="footer">This footer as at the bottom of the viewport.</div>
 </div>
 ```
+
+2. .fixed-width - Sets a fixed width to the grid.
+3. .center-grid - Centers the grid on the page.  This must be used with `.fixed-width`.
+
+Example markup:
+
+```html
+<div class="grid fixed-width center-grid">
+  <div class="col-1-12 row-1-1"   id="header">This header is at the top of the viewport.</div>
+  <div class="col-1-8  row-2-11"  id="article">I span the remaining height of the leftover space.</div>
+  <div class="col-9-12 row-2-11"  id="sidebar">I span the remaining height of the leftover space.</div>
+  <div class="col-1-12 row-12-12" id="footer">This footer as at the bottom of the viewport.</div>
+</div>
+```
+
 
 ## Contributing
 
