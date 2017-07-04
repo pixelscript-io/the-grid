@@ -1,0 +1,151 @@
+//  Imports
+//  ───────────────────────────────────
+
+@import 'config.less';
+
+
+//  Define the grid.
+//  ───────────────────────────────────
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  grid-template-rows: repeat(12, 1fr);
+  grid-gap: @grid-row-gap @grid-col-gap;
+}
+
+
+//  Build the columns.
+//  ───────────────────────────────────
+
+.generate-columns(12);
+
+.generate-columns(@n, @i: 1) when (@i =< @n) {
+  .generate-columns(@n, (@i + 1));
+  .col-1-@{i} {
+    grid-column: 1 / span (@i);
+  }
+  & when (@i >= 2) {
+    .col-2-@{i} {
+      grid-column: 2 / span (@i - 1);
+    }
+  }
+  & when (@i >= 3) {
+    .col-3-@{i} {
+      grid-column: 3 / span (@i - 2);
+    }
+  }
+  & when (@i >= 4) {
+    .col-4-@{i} {
+      grid-column: 4 / span (@i - 3);
+    }
+  }
+  & when (@i >= 5) {
+    .col-5-@{i} {
+      grid-column: 5 / span (@i - 4);
+    }
+  }
+  & when (@i >= 6) {
+    .col-6-@{i} {
+      grid-column: 6 / span (@i - 5);
+    }
+  }
+  & when (@i >= 7) {
+    .col-7-@{i} {
+      grid-column: 7 / span (@i - 6);
+    }
+  }
+  & when (@i >= 8) {
+    .col-8-@{i} {
+      grid-column: 8 / span (@i - 7);
+    }
+  }
+  & when (@i >= 9) {
+    .col-9-@{i} {
+      grid-column: 9 / span (@i - 8);
+    }
+  }
+  & when (@i >= 10) {
+    .col-10-@{i} {
+      grid-column: 10 / span (@i - 9);
+    }
+  }
+  & when (@i >= 11) {
+    .col-11-@{i} {
+      grid-column: 11 / span (@i - 10);
+    }
+  }
+  & when (@i >= 12) {
+    .col-12-@{i} {
+      grid-column: 12 / span (@i - 11);
+    }
+  }
+}
+
+
+//  Build the rows.
+//  ───────────────────────────────────
+
+.generate-rows(12);
+
+.generate-rows(@n, @i: 1) when (@i =< @n) {
+  .generate-rows(@n, (@i + 1));
+  .row-1-@{i} {
+    grid-row: 1 / span (@i);
+  }
+  & when (@i >= 2) {
+    .row-2-@{i} {
+      grid-row: 2 / span (@i - 1);
+    }
+  }
+  & when (@i >= 3) {
+    .row-3-@{i} {
+      grid-row: 3 / span (@i - 2);
+    }
+  }
+  & when (@i >= 4) {
+    .row-4-@{i} {
+      grid-row: 4 / span (@i - 3);
+    }
+  }
+  & when (@i >= 5) {
+    .row-5-@{i} {
+      grid-row: 5 / span (@i - 4);
+    }
+  }
+  & when (@i >= 6) {
+    .row-6-@{i} {
+      grid-row: 6 / span (@i - 5);
+    }
+  }
+  & when (@i >= 7) {
+    .row-7-@{i} {
+      grid-row: 7 / span (@i - 6);
+    }
+  }
+  & when (@i >= 8) {
+    .row-8-@{i} {
+      grid-row: 8 / span (@i - 7);
+    }
+  }
+  & when (@i >= 9) {
+    .row-9-@{i} {
+      grid-row: 9 / span (@i - 8);
+    }
+  }
+  & when (@i >= 10) {
+    .row-10-@{i} {
+      grid-row: 10 / span (@i - 9);
+    }
+  }
+  & when (@i >= 11) {
+    .row-11-@{i} {
+      grid-row: 11 / span (@i - 10);
+    }
+  }
+  & when (@i >= 12) {
+    .row-12-@{i} {
+      grid-row: 12 / span (@i - 11);
+    }
+  }
+}
